@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 class loginController extends Controller
 {
@@ -23,6 +22,7 @@ class loginController extends Controller
         //print_r($user->first()->password);
         if ($user->first()->password==$request->input('password')) {
             $request->session()->put('user', $user->first()->email);
+            $request->session()->put('role', $user->first()->role);
             print_r('Вы вошли как: ');
             print_r($user->first()->name);
             print_r(' Почта: ');
@@ -34,6 +34,7 @@ class loginController extends Controller
     public function logoutUser(Request $request)
     {
         $request->session()->forget('user');
+        $request->session()->forget('role');
         return redirect('/home');
     }
 }

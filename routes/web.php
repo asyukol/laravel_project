@@ -27,5 +27,9 @@ Route::post('/login', 'loginController@loginUser');
 Route::post('/home', 'loginController@logoutUser');
 
 Route::get('/admin', 'adminPageController@showAdminPage');
+Route::get('/admin/deleteUser', 'adminPageController@deleteUserView');
+Route::get('/admin/editUser', 'adminPageController@editUserView');
+Route::post('/admin/deleteUser', 'adminPageController@deleteUser');
+Route::post('/admin/editUser', 'adminPageController@editUser');
 
 

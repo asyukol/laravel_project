@@ -10,21 +10,42 @@ class adminPageController extends Controller
 {
     public function showAdminPage()
     {
-        $userEmail=Session::get('user');
-        $user=User::Where('email', $userEmail);
-        if ($user->first()->role=='admin') {
+        if (Session::get('role')=='admin') {
             $users = DB::table('users')->select('id', 'name', 'email', 'password')->get();
             return view('adminPage', compact('users'));
         }
         else
             return redirect('/home');
     }
-    public function deleteUser()
+
+    public function deleteUserView()
     {
-        return view('adminPage');
+        if (Session::get('role')=='admin')
+            return view('adminDelete');
+        else
+            return redirect('/home');
     }
-    public function editUser()
+    public function editUserView()
     {
-        return view('adminPage');
+        if (Session::get('role')=='admin')
+            return view('adminEdit');
+        else
+            return redirect('/home');
     }
+
+    public function deleteUser(Request $request)
+    {
+       DB::table('users')->delete($request->id);
+       return redirect('/admin');
+    }
+    public function editUser(Request $request)
+    {
+        $newPass=$request->password;
+        $userId=$request->id;
+        DB::table('users')
+            ->where('id', $userId)
+            ->update(['password' => $newPass]);
+        return redirect('/admin');
+    }
+
 }
