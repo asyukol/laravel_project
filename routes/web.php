@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/home', function () {
     return view('home');
@@ -32,4 +32,10 @@ Route::get('/admin/editUser', 'adminPageController@editUserView');
 Route::post('/admin/deleteUser', 'adminPageController@deleteUser');
 Route::post('/admin/editUser', 'adminPageController@editUser');
 
+Route::get('/news', 'newsController@showNews');
+Route::post('/news', 'newsController@addNewsShow');
 
+Route::post('/news/add', 'newsController@addNews');
+
+Route::get('/news/{title}', 'newsController@showNewsDetails');
+Route::post('/news/comment','newsController@addComment');

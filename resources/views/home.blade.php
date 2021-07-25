@@ -27,7 +27,14 @@
                     <button type="submit">Войти</button>
                 </form>
             @endif
-
+            <form method="GET" action="/register">
+                @csrf
+                <button type="submit">Создать учетную запись</button>
+            </form>
+            <form method="GET" action="/news">
+                @csrf
+                <button type="submit">Новости</button>
+            </form>
         </div>
     </body>
 </html>
