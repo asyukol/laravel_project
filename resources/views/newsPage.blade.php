@@ -9,7 +9,8 @@
             <div class="row">
                 @foreach ($news as $newsPost)
 
-                    <a href="news/{{$newsPost->title}}"><h3>{{$newsPost->title}}</h3> </a>{{$newsPost->author}} {{$newsPost->views}} {{$newsPost->date}} {{$newsPost->contents}}
+                    <a href="news/{{$newsPost->title}}"><h3>{{$newsPost->title}}</h3> </a> <p>{{$newsPost->author}} {{$newsPost->date}}</p> <p>{{$newsPost->contents}}</p>
+                    <p>{{$newsPost->views}} просмотров</p>
                     <br><br>
                 @endforeach
             </div>

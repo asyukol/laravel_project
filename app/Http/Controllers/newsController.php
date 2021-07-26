@@ -35,8 +35,15 @@ class newsController extends Controller
 
     public function showNewsDetails($title)
     {
-        $articleId=DB::table('news')->select('id')->where('title', '=', $title)->first()->id;
+        $articleId=DB::table('news')->select('id')
+            ->where('title', '=', $title)->first()->id;
         //Session::put('article', $articleId);
+        $views=DB::table('news')->select('views')
+            ->where('title', '=', $title)->first()->views;
+        $views=$views+1;
+        DB::table('news')
+            ->where('id', $articleId)
+            ->update(['views' => $views]);
         session(['articleId' => $title]);
         session(['article' => $articleId]);
         $post = DB::table('news')->select('id', 'title', 'author', 'date', 'views', 'contents')

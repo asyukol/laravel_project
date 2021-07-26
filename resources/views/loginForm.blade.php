@@ -1,5 +1,17 @@
 <html>
-    <body>
+    <head>
+        <style>
+            .content {
+                text-align: center;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        </style>
+    </head>
+    <body class="content">
         <div>
             <form method="POST" action="login">
                 @csrf

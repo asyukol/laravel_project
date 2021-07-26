@@ -4,7 +4,8 @@
 
             <div class="row">
                     @foreach($post as $p)
-                        {{$p->title}} {{$p->author}} {{$p->views}} {{$p->date}} {{$p->contents}}
+                    <h1>{{$p->title}}</h1> <p>{{$p->author}}  {{$p->date}}</p><p> {{$p->contents}}</p>
+                    <p>{{$p->views}} просмотров</p>
                     @endforeach
             </div>
             <br><br>
@@ -12,8 +13,9 @@
 
             @foreach ($comments as $comment)
 
-                {{$comment->author}} {{$comment->date}} {{$comment->text}}
-                <br><br>
+                <p> {{$comment->author}} {{$comment->date}}</p>
+                <p>{{$comment->text}}</p>
+
             @endforeach
 
             @if(Session::get('user')!=null)
@@ -21,7 +23,7 @@
                     @csrf
                     <input name="text" placeholder="Комментарий">
                     <br><br>
-                    <button type="submit">Сохранить</button>
+                    <button type="submit">Отправить</button>
                 </form>
             @endif
 
